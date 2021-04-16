@@ -16,12 +16,15 @@ public class Connexion {
     public static Connection Connexion() {
         Connection cnx = null;
         try {
+            Class.forName("com.mysql.jdbc.Driver");
             cnx = DriverManager.getConnection(url, login, pwd);
          //   return cnx;
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-             }
+             } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Connexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println("connection etablies ");
         return cnx;
     }
